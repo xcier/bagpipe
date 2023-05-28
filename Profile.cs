@@ -35,7 +35,7 @@ namespace bagpipe {
         using (MemoryStream ms = new MemoryStream()) {
           fs.CopyTo(ms);
           try {
-            decompressedData = LZO.Decompress(size, ms.GetBuffer(), 0, (int)ms.Length);
+            decompressedData = ZLIB.Decompress(size, ms.GetBuffer(), 0, (int)ms.Length);
           } catch (Win32Exception ex) {
             throw new IOException(ex.Message, ex);
           }
@@ -241,7 +241,7 @@ namespace bagpipe {
       byte[] compressed;
 
       try {
-        compressed = LZO.Compress(decompressed, 0, decompressed.Length);
+        compressed = ZLIB.Compress(decompressed, 0, decompressed.Length);
       } catch (Win32Exception ex) {
         throw new IOException(ex.Message, ex);
       }

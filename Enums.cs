@@ -26,8 +26,6 @@
 
   public enum Game {
     None,
-    BL1,
-    BL1E,
     BL2,
     TPS,
     AoDK,

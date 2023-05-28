@@ -42,7 +42,7 @@ namespace bagpipe {
     public void GuessDisplayGame(string path) {
       FileInfo info = new FileInfo(path);
       if (info.Name == "Player.wsg") {
-        DisplayGame = Game.BL1;
+        DisplayGame = Game.BL2;
         return;
       }
 
@@ -51,14 +51,6 @@ namespace bagpipe {
         gameFolder = gameFolder.Parent;
       }
       switch (gameFolder.Name) {
-        case "Borderlands": {
-          DisplayGame = Game.BL1;
-          return;
-        }
-        case "Borderlands Game of the Year": {
-          DisplayGame = Game.BL1E;
-          return;
-        }
         case "Borderlands 2": {
           DisplayGame = Game.BL2;
           return;
@@ -85,11 +77,6 @@ namespace bagpipe {
         */
         int version = (int)versionEntry.Value;
         if (version <= 20) {
-          DisplayGame = Game.BL1;
-          return;
-        } else if (version <= 39) {
-          DisplayGame = Game.BL1E;
-          return;
         } else if (version <= 66) {
           DisplayGame = Game.BL2;
           return;
@@ -103,9 +90,6 @@ namespace bagpipe {
       }
 
       if (!profile.Entries.Any(e => e.ID == 129)) { // PlayerFOV (bl2, tps, aodk) / FOV (bl1e)
-        DisplayGame = Game.BL1;
-      } else if (profile.Entries.Any(e => e.ID == 126)) { // ShowCompass
-        DisplayGame = Game.BL1E;
       } else if (profile.Entries.Any(e => e.ID == 168)) { // ResetCameraOnSlam
         DisplayGame = Game.TPS;
       } else if (profile.Entries.Any(e => e.ID == 170)) { // ShowSubtitleBackground
@@ -249,11 +233,11 @@ namespace bagpipe {
     }
 
     // When we have BL2 style keys, use a conservative max to avoid 9000 byte limit
-    public int MaxGoldenKeys => _goldenKeysEarned != null ? 333333 : int.MaxValue;
+    public int MaxGoldenKeys => _goldenKeysEarned != null ? 600000 : int.MaxValue;
 
     public int? GoldenKeys {
       // If we're in BL1E, and we have BL1E style keys, prefer those, otherwise prefer BL2 style keys
-      get => DisplayGame == Game.BL1E && _keyCount != null
+      get => DisplayGame == Game.BL2 && _keyCount != null
              ? _bl1eKeys
              : _bl2Keys ?? _bl1eKeys;
       set {

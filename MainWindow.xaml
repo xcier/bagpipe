@@ -10,7 +10,7 @@
         xmlns:local="clr-namespace:bagpipe"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:ProfileViewModel}"
-        Title="Bagpipe"
+        Title="PS4 Profile Editor - Bagpipe (Edited by ProtoBuffers)"
         Width="400" Height="500" 
         MinWidth="400" MinHeight="500"
         ShowDialogsOverTitleBar="False">
@@ -337,9 +337,7 @@
                                             <Setter Property="IsEnabled" Value="False" />
                                         </DataTrigger>
                                         <!-- BL1E uses it's own fields with the same ids which we can't distinguish -->
-                                        <DataTrigger Binding="{Binding DisplayGame}" Value="{x:Static local:Game.BL1E}">
-                                            <Setter Property="IsEnabled" Value="False" />
-                                        </DataTrigger>
+                                       
                                     </Style.Triggers>
                                 </Style>
                             </mah:NumericUpDown.Style>
@@ -362,10 +360,6 @@
                                 <Style TargetType="{x:Type mah:NumericUpDown}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding BadassTokens}" Value="{x:Null}">
-                                            <Setter Property="IsEnabled" Value="False" />
-                                        </DataTrigger>
-                                        <!-- BL1E uses it's own fields with the same ids which we can't distinguish -->
-                                        <DataTrigger Binding="{Binding DisplayGame}" Value="{x:Static local:Game.BL1E}">
                                             <Setter Property="IsEnabled" Value="False" />
                                         </DataTrigger>
                                     </Style.Triggers>
