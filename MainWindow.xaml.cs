@@ -30,7 +30,7 @@ namespace bagpipe {
       Filter = "Profile Files|profile.bin;Player.wsg|All Files (*.*)|*.*"
     };
     private readonly SaveFileDialog saveDialog = new SaveFileDialog() {
-      Filter = "Profile Files|profile.bin;Player.wsg"
+      Filter = "Profile Files|profile.bin;Player.wsg|All Files (*.*)|*.*"
     };
 
     private async void OpenButton_Click(object sender, RoutedEventArgs e) {
